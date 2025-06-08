@@ -30,6 +30,7 @@ class TcpServer:
                     payload = json.loads(text)
                     called_api = payload["api"]
                     controller = self._route_table[called_api]
+                    payload.pop("api", None)  # apiキーは不要なためドロップ
                     await controller.Execute(payload)
                 except Exception as e:
                     access_logger.error(f"exception occur", exc_info=e)

@@ -1,12 +1,12 @@
 import json
 import logging
-from dataclasses import asdict
-
-from entity.alart_notification.alart import Alart
-from usecase.alart_notification.output_port import AlartNotificationOutputPort
+from datetime import datetime
 
 from common.log import context as ctx
 from common.log.access_log import RequestIDFilter
+from entity.alart_notification.alart import Alart
+from usecase.alart_notification.output_port import AlartNotificationOutputPort
+from util import alart_time
 
 access_logger = logging.getLogger("access")
 
@@ -33,7 +33,7 @@ class AlartPresenterMock(AlartNotificationOutputPort):
         '''
         access_logger.addFilter(RequestIDFilter(ctx.request_id_var.get()))
         byte_data = self.MakeMesage(msg)
-        access_logger.info(f"notify dummy alart: {byte_data}")
+        access_logger.info(f"notify dummy alart")
 
     def MakeMesage(self, msg: Alart) -> bytes:
         '''送信電文を作る
@@ -44,6 +44,11 @@ class AlartPresenterMock(AlartNotificationOutputPort):
         Returns:
             bytes: jsonデータのバイト列
         '''
-        j = json.dumps(asdict(msg))
-        access_logger(f"sending message: {j}")
+        d = {
+            "msg": msg.msg,
+            "timestamp": datetime.strftime(msg.occurence_time, alart_time.displayed_format),
+            "severity": msg.severity
+        }
+        j = json.dumps(d)
+        access_logger.info(f"sending message: {j}")
         return j.encode("utf-8")

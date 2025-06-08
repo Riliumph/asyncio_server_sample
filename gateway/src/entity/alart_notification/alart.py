@@ -1,19 +1,20 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field, fields
 from datetime import datetime
-
-from util import alart_time
 
 
 @dataclass
 class Alart:
     severities = ["fatal", "error", "warning", "info"]
 
-    _msg: str
-    _severity: str
-    _occurence_time: datetime
+    # dataclassが__init__/__repr__/__eq__などを作るために定義。
+    # プロパティと名前が被せているので、属性はプロパティに上書きされる。
+    # 内部でアクセスするときは必ず接頭辞に_を付けてアクセスすること。
+    msg: str
+    severity: str
+    occurence_time: datetime
 
     @property
-    def msg(self):
+    def msg(self) -> str:
         return self._msg
 
     @msg.setter
@@ -31,14 +32,13 @@ class Alart:
         self._severity = v
 
     @property
-    def occurence_time(self):
+    def occurence_time(self) -> datetime:
         return self._occurence_time
 
     @occurence_time.setter
-    def ocurence_time(self, time_text: str):
+    def occurence_time(self, v: str):
         try:
-            dt = datetime.fromisoformat(time_text)
-            dt_text = dt.strftime(alart_time.displayed_format)
-            self._occurence_time = dt_text
+            dt = datetime.fromisoformat(v)
+            self._occurence_time = dt
         except ValueError as e:
             raise e
