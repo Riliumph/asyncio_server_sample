@@ -30,9 +30,9 @@ class TcpServer:
                     payload = json.loads(text)
                     called_api = payload["api"]
                     controller = self._route_table[called_api]
-                    await controller.Execute(data)
-                except:
-                    access_logger.error(f"cannot find api")
+                    await controller.Execute(payload)
+                except Exception as e:
+                    access_logger.error(f"exception occur", exc_info=e)
         except asyncio.IncompleteReadError:
             pass
         finally:
