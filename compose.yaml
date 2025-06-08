@@ -1,0 +1,30 @@
+services:
+    gateway:
+      build:
+        context: gateway
+        dockerfile: Dockerfile
+      hostname: gateway
+      stdin_open: true
+      tty: true
+      volumes:
+        - type: bind
+          source: gateway/src
+          target: /app/
+      networks:
+        gateway_nw:
+      depends_on:
+        - receiver
+    sender:
+      build:
+        context: sender
+        dockerfile: Dockerfile
+      hostname: sender
+
+    receiver:
+      build:
+        context: receiver
+        dockerfile: Dockerfile
+      hostname: receiver
+
+networks:
+  gateway_nw:
