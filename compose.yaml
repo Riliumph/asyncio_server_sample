@@ -19,12 +19,14 @@ services:
         context: sender
         dockerfile: Dockerfile
       hostname: sender
-
+      networks:
+        gateway_nw:
     receiver:
       build:
         context: receiver
         dockerfile: Dockerfile
       hostname: receiver
-
+      networks:
+        gateway_nw:
 networks:
   gateway_nw:
