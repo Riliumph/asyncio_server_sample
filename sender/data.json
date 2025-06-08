@@ -1,6 +1,6 @@
 {
   "api": "alart",
-  "occurence_time": "2025/06/09T01:24:00.000",
+  "occurence_time": "2025-06-09T01:24:00.000",
   "severity": "warning",
   "msg": "server down"
 }

@@ -24,5 +24,5 @@ ncat gateway 80 < data.json
 
 ```console
 # telnet gateway 80
-{"api": "alart", "occurence_time": "2025/06/09T01:24:00.000", "severity": "warning", "msg": "server down"}
+{"api": "alart", "occurence_time": "2025-06-09T01:24:00.000", "severity": "warning", "msg": "server down"}
 ```
