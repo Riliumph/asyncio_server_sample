@@ -2,7 +2,7 @@ import argparse
 import asyncio
 import logging
 
-from common.log import logger
+from common.logger import logger
 from driver.route_table import route_table
 from driver.tcp_server import TcpServer
 

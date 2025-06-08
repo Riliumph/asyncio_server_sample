@@ -1,11 +1,10 @@
 import logging
 
+from common.logger import context as ctx
+from common.logger.access_log import RequestIDFilter
 from entity.alart_notification.alart import Alart
 from usecase.alart_notification.input_port import AlartNotificationInputPort
 from usecase.alart_notification.output_port import AlartNotificationOutputPort
-
-from common.log import context as ctx
-from common.log.access_log import RequestIDFilter
 
 access_logger = logging.getLogger("access")
 

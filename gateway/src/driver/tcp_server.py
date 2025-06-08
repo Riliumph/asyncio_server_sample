@@ -4,8 +4,8 @@ import logging
 import uuid
 from asyncio import StreamReader, StreamWriter
 
-from common.log import context as ctx
-from common.log.access_log import RequestIDFilter
+from common.logger import context as ctx
+from common.logger.access_log import RequestIDFilter
 
 access_logger = logging.getLogger("access")
 app_logger = logging.getLogger("app")

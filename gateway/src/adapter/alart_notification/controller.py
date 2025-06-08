@@ -2,11 +2,10 @@ import asyncio
 import logging
 
 from adapter.base_controller import BaseController
+from common.logger import context as ctx
+from common.logger.access_log import RequestIDFilter
 from entity.alart_notification.alart import Alart
 from usecase.alart_notification.input_port import AlartNotificationInputPort
-
-from common.log import context as ctx
-from common.log.access_log import RequestIDFilter
 
 app_logger = logging.getLogger("app")
 access_logger = logging.getLogger("access")
