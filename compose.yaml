@@ -19,6 +19,8 @@ services:
         context: sender
         dockerfile: Dockerfile
       hostname: sender
+      stdin_open: true
+      tty: true
       networks:
         gateway_nw:
     receiver:

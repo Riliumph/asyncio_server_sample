@@ -16,4 +16,7 @@ RUN apt-get update -qq &&\
 
 RUN printf "PS1='[\@]\u@\h(\$(hostname -i)):\w \n\\$ '" >> /root/.bashrc
 
-ENTRYPOINT ["ncat", "-u", "-l", "50000"]
+WORKDIR /workspace
+COPY data.json .
+
+ENTRYPOINT ["/bin/bash"]

@@ -12,6 +12,14 @@ $ docker compose exec -it sender /bin/bash
 
 ### リクエストの送り方
 
+#### ncatを使う場合
+
+```console
+ncat gateway 80 < data.json
+```
+
+#### telnetを使う場合
+
 > 予めコンテナに入っておく
 
 ```console
