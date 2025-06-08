@@ -16,3 +16,7 @@ $ docker compose up -d
 ```console
 $ docker compose down --volumes
 ```
+
+## 設計
+
+![class](./class.drawio.svg)
